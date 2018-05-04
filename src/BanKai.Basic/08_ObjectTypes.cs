@@ -103,9 +103,14 @@ namespace BanKai.Basic
             // use unsafe keyword permit use pointer and perform c++-style pointer operations 
             unsafe
             {
+                // & returns a pointer to the address of variable
+                // * returns the variable at the address of a pointer
+                // -> ponit-to-member operator, x->y is equivalent to(*x).y
                 ValueTypeDemoClass* originalPtr = &original;
                 ValueTypeDemoClass* copyPtr = &copy;
 
+                // originalPtr -> original
+                // copyPtr -> copy
                 isSameReference = originalPtr == copyPtr;
             }
 
@@ -119,7 +124,9 @@ namespace BanKai.Basic
         public void should_as_if_nothing_different_occurrs_when_doing_boxing_operation()
         {
             int intObject = 1;
+            // upcasting
             var boxed = (object) intObject;
+            // var test = (long) boxed; fail, beacuse currently the type of boxed is sealed
 
             // change the variable values for the following 3 lines to fix the test.
             Type expectedType = typeof(int);
