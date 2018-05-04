@@ -12,9 +12,9 @@ namespace BanKai.Basic
         [Fact]
         public void all_types_are_derived_from_object()
         {
-            // object->string
+            // all types are su classes of object
+            // object->value type->string, object->value type->int
             // object->ref type->array
-            // object->value type->int
             var stringInstance = "a string";
             var annonymousInstance = new { };
             var valueTypeInstance = 2;
@@ -177,6 +177,7 @@ namespace BanKai.Basic
         [Fact]
         public void should_print_object_type_if_no_override_is_available_for_to_string_method()
         {
+            // ToString() output object type
             var objectWithoutToStringOverride = new RefTypeClass(2);
 
             // change the variable value to fix the test.

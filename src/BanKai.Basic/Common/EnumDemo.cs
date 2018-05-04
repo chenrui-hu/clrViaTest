@@ -34,8 +34,11 @@ namespace BanKai.Basic.Common
         Right = 2,
         Top = 4,
         Bottom = 8,
+        // 0001 | 0010 == 0011, 3
         LeftAndRight = Left | Right,
+        // 0100 | 1000 == 1100, 12
         TopAndBottom = Top | Bottom,
+        // 1111 = 15
         All = Left | Right | Top | Bottom
     }
 }

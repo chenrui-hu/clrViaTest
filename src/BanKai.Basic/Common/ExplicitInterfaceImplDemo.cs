@@ -14,7 +14,7 @@
         {
             return m_storage;
         }
-
+      
         void ITextStream.Write(string text)
         {
             m_storage = text;

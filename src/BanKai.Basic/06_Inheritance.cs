@@ -177,7 +177,7 @@ namespace BanKai.Basic
         [Fact]
         public void should_call_default_constructors_of_base_class()
         {
-            // why call default constructor in case class
+            // call default constructor in case class
             var demoClass = new InheritanceConstructorCallDemoClass();
 
             string message = demoClass.ConstructorCallMessage;
@@ -193,7 +193,7 @@ namespace BanKai.Basic
         public void should_call_default_constructor_of_base_class_when_call_derived_ctor_with_args()
         {
             // new object with type of sub class, parameter is int 
-            // why still call base constructor? here doesn't use base keyword
+            //still call base constructor
             var demoClass = new InheritanceConstructorCallDemoClass(1);
 
             string message = demoClass.ConstructorCallMessage;

@@ -16,8 +16,10 @@ namespace BanKai.Basic
             const bool rightEqualsRight = BorderSide.Right == BorderSide.Right;
 
             // change the variable value for following 2 lines to fix the test.
-            const bool expectedResultForBottomEqualsLeft = true;
-            const bool expectedResultForRightEqualsRight = false;
+            // Left != Right
+            const bool expectedResultForBottomEqualsLeft = false;
+            // 
+            const bool expectedResultForRightEqualsRight = true;
 
             Assert.Equal(expectedResultForBottomEqualsLeft, bottomEqualsLeft);
             Assert.Equal(expectedResultForRightEqualsRight, rightEqualsRight);

@@ -12,6 +12,7 @@ namespace BanKai.Basic
             // IMovable and ITalkable are interfaces
             // IMovable has an abstract method MoveTo(x, y) and a property WhereAmI()
             // ITalkable has an abstract method Talk()
+            // Duck can implement more than one interface
             var duck = new Duck();
             var castToMoveable = (IMoveable) duck;
             var castToTalkable = (ITalkable) duck;
@@ -32,6 +33,7 @@ namespace BanKai.Basic
         [Fact]
         public void should_use_explict_interface_impl_if_you_want_to_hide_something_for_certain_type()
         {
+            // ReadOnlyStream implement ITextStream, explicity implement Write
             var readOnlyStreamWithWriteExplicitlyImpl = new ReadOnlyStream();
 
             // see if reafOnlyStreamWithExplicitImpl has write method
