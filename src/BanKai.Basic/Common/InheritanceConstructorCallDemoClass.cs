@@ -34,7 +34,7 @@ namespace BanKai.Basic.Common
         {
             m_messageBuffer.AppendLine("InheritanceConstructorCallDemoClass::Ctor(int)");
         }
-
+        // base keyword accessing the base class and calling its constructor in sub class
         public InheritanceConstructorCallDemoClass(string arg)
             : base(int.Parse(arg))
         {

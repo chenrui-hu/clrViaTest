@@ -12,14 +12,17 @@ namespace BanKai.Basic
         [Fact]
         public void all_types_are_derived_from_object()
         {
+            // object->string
+            // object->ref type->array
+            // object->value type->int
             var stringInstance = "a string";
             var annonymousInstance = new { };
             var valueTypeInstance = 2;
 
             // change the variable values for the following 3 lines to fix the test.
-            const bool isStringInstanceObject = false;
-            const bool isAnnonymousInstanceObject = false;
-            const bool isValueTypeInstanceObject = false;
+            const bool isStringInstanceObject = true;
+            const bool isAnnonymousInstanceObject = true;
+            const bool isValueTypeInstanceObject = true;
 
             Assert.Equal(
                 isStringInstanceObject,
@@ -35,6 +38,7 @@ namespace BanKai.Basic
         [Fact]
         public void should_cast_to_object_for_any_instance()
         {
+            // cast object to more specific type
             var objectList = new List<object> {"String", 2, new RefTypeClass(2)};
 
             object itemAtPosition0 = objectList[0];
@@ -42,9 +46,9 @@ namespace BanKai.Basic
             object itemAtPosition2 = objectList[2];
 
             // change the variable values for the following 3 lines to fix the test.
-            Type expectedTypeForItemAtPosition0 = typeof(object);
-            Type expectedTypeForItemAtPosition1 = typeof(object);
-            Type expectedTypeForItemAtPosition2 = typeof(object);
+            Type expectedTypeForItemAtPosition0 = typeof(string);
+            Type expectedTypeForItemAtPosition1 = typeof(int);
+            Type expectedTypeForItemAtPosition2 = typeof(RefTypeClass);
 
             Assert.Equal(expectedTypeForItemAtPosition0, itemAtPosition0.GetType());
             Assert.Equal(expectedTypeForItemAtPosition1, itemAtPosition1.GetType());
@@ -54,14 +58,16 @@ namespace BanKai.Basic
         [Fact]
         public void should_derived_from_value_type_for_value_type()
         {
+            // value type: numeric types, char, boolean, struct, enum
             int intObject = 1;
             DateTime dateTimeObject = DateTime.Now;
+            // struct
             var customValueTypeObject = new ValueTypeDemoClass();
 
             // change the variable values for the following 3 lines to fix the test.
-            const bool isIntObjectValueType = false;
-            const bool isDateTimeObjectValueType = false;
-            const bool isCustomValueTypeObjectValueType = false;
+            const bool isIntObjectValueType = true;
+            const bool isDateTimeObjectValueType = true;
+            const bool isCustomValueTypeObjectValueType = true;
 
             Assert.Equal(
                 isIntObjectValueType, 
@@ -77,10 +83,11 @@ namespace BanKai.Basic
         [Fact]
         public void should_be_sealed_for_value_type()
         {
+            // sealed keyword to prevent it from being overridden by further subclasses
             var customValueTypeObject = new ValueTypeDemoClass();
 
             // change the variable value to fix the test.
-            const bool isValueTypeSealed = false;
+            const bool isValueTypeSealed = true;
 
             Assert.Equal(isValueTypeSealed, customValueTypeObject.GetType().IsSealed);
         }
@@ -93,6 +100,7 @@ namespace BanKai.Basic
             ValueTypeDemoClass copy = original;
             bool isSameReference;
 
+            // use unsafe keyword permit use pointer and perform c++-style pointer operations 
             unsafe
             {
                 ValueTypeDemoClass* originalPtr = &original;
@@ -102,7 +110,7 @@ namespace BanKai.Basic
             }
 
             // change the variable value to fix the test.
-            const bool expectedIsSameReference = true;
+            const bool expectedIsSameReference = false;
 
             Assert.Equal(expectedIsSameReference, isSameReference);
         }
@@ -114,9 +122,9 @@ namespace BanKai.Basic
             var boxed = (object) intObject;
 
             // change the variable values for the following 3 lines to fix the test.
-            Type expectedType = typeof(object);
-            const bool isBoxedTypeSealed = false;
-            const bool isValueType = false;
+            Type expectedType = typeof(int);
+            const bool isBoxedTypeSealed = true;
+            const bool isValueType = true;
 
             Assert.Equal(expectedType, boxed.GetType());
             Assert.Equal(isBoxedTypeSealed, boxed.GetType().IsSealed);
@@ -133,6 +141,7 @@ namespace BanKai.Basic
 
             try
             {
+                // long and int are not at a same iheritance chain
                 longObject = (long) boxed;
             }
             catch (Exception error)
@@ -141,9 +150,9 @@ namespace BanKai.Basic
             }
 
             // change the variable values for the following 3 lines to fix the test.
-            const bool isExceptionOccurred = false;
-            Type expectedExceptionType = typeof(Exception);
-            const long expectedLongObjectValue = 1L;
+            const bool isExceptionOccurred = true;
+            Type expectedExceptionType = typeof(InvalidCastException);
+            const long expectedLongObjectValue = 0;
 
             Assert.Equal(isExceptionOccurred, (errorWhenCasting != null));
             Assert.Equal(expectedExceptionType, errorWhenCasting.GetType());
@@ -154,12 +163,13 @@ namespace BanKai.Basic
         public void should_get_most_derived_type_when_call_get_type_method()
         {
             var derivedClassObject = new InheritMemberAccessDemoClass();
+            // doesn't really change the type of object
             var castedToBaseClass = (InheritMemberAccessDemoBaseClass)derivedClassObject;
 
             Type type = castedToBaseClass.GetType();
 
             // change the variable value to fix the test.
-            Type expectedType = typeof(InheritMemberAccessDemoBaseClass);
+            Type expectedType = typeof(InheritMemberAccessDemoClass);
 
             Assert.Equal(expectedType, type);
         }
@@ -170,7 +180,7 @@ namespace BanKai.Basic
             var objectWithoutToStringOverride = new RefTypeClass(2);
 
             // change the variable value to fix the test.
-            const string expectedToStringResult = "";
+            const string expectedToStringResult = "BanKai.Basic.Common.RefTypeClass";
 
             string toStringResult = objectWithoutToStringOverride.ToString();
 
