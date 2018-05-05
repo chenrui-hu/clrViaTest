@@ -34,7 +34,7 @@ namespace BanKai.Basic
         public void should_use_explict_interface_impl_if_you_want_to_hide_something_for_certain_type()
         {
             // ReadOnlyStream implement ITextStream, explicity implement Write
-            // lets the two meth‐ ods coexist in one class. 
+            // lets the two methods coexist in one class. 
             // The only way to call an explicitly implemented member is to cast to its interface
             // as the next test
             var readOnlyStreamWithWriteExplicitlyImpl = new ReadOnlyStream();

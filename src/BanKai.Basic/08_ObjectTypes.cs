@@ -84,6 +84,7 @@ namespace BanKai.Basic
         public void should_be_sealed_for_value_type()
         {
             // sealed keyword to prevent it from being overridden by further subclasses
+            // value type are sealed
             var customValueTypeObject = new ValueTypeDemoClass();
 
             // change the variable value to fix the test.
