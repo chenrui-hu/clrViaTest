@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace BanKai.Progress.LinqRelated
@@ -19,7 +20,7 @@ namespace BanKai.Progress.LinqRelated
         static IEnumerable<int> CollectAllEvenNumbers(int[] source)
         {
             // TODO: write your implementation here.
-            throw new System.NotImplementedException();
+            return source.Where(item => item % 2 == 0);
         }
     }
 }

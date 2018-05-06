@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace BanKai.Progress.LinqRelated
 {
@@ -15,7 +16,16 @@ namespace BanKai.Progress.LinqRelated
 
         static int CalculateAverage(string listString)
         {
-            throw new System.NotImplementedException();
+            string[] stringList = listString.Split(new string[] {"->"}, StringSplitOptions.RemoveEmptyEntries);
+            int sum = 0;
+
+            for (int i = 0; i < stringList.Length; i++)
+            {
+                sum += int.Parse(stringList[i]);
+            }
+
+            int average = sum / stringList.Length;
+            return average;
         }
     }
 }

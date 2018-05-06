@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace BanKai.Progress.LinqRelated
@@ -43,7 +45,21 @@ namespace BanKai.Progress.LinqRelated
         static IEnumerable<int> GetEvenSequence(int start, int end)
         {
             // TODO: write your implementation here.
-            throw new System.NotImplementedException();
+            IEnumerable<int> evenSequence;
+            if (start < end)
+            {
+                evenSequence =  Enumerable.Range(start, end - start + 1).Where(item => item % 2 == 0);
+            }
+            else if (start > end)
+            {
+                evenSequence = Enumerable.Range(end, start - end + 1).Reverse().Where(item => item % 2 == 0);
+            }
+            else
+            {
+                return start % 2 == 0 ? new int[] {start} : new int[] { };
+            }
+
+            return evenSequence.ToArray();
         }
     }
 }

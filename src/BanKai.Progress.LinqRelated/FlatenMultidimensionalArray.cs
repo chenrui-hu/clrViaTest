@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace BanKai.Progress.LinqRelated
@@ -21,7 +22,13 @@ namespace BanKai.Progress.LinqRelated
 
         static IEnumerable<int> FlattenMultiDimensionalArrayAndSort(IEnumerable<int[]> jaggedArray)
         {
-            throw new System.NotImplementedException();
+            IEnumerable<int> result = new int[] { };
+            foreach (int[] arr in jaggedArray)
+            {
+                result = result.Union(arr);
+            }
+
+            return result.OrderBy(item => item).ToArray();
         }
     }
 }

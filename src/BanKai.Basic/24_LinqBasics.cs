@@ -204,7 +204,7 @@ namespace BanKai.Basic
 
         [Fact]
         public void should_concat_sequences()
-        {
+        { 
             var left = new[] {1, 2, 3};
             var right = new[] {4, 5};
 

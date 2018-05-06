@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace BanKai.Progress.LinqRelated
@@ -22,7 +23,12 @@ namespace BanKai.Progress.LinqRelated
             IEnumerable<int> source,
             IEnumerable<int> dividers)
         {
-            throw new NotImplementedException();
+            IEnumerable<int> results = new int[]{};
+            foreach (int divider in dividers)
+            {
+                results = results.Concat(source.Where(item => item % divider == 0));
+            }
+            return results.OrderBy(item => item).ToArray();
         }
     }
 }
