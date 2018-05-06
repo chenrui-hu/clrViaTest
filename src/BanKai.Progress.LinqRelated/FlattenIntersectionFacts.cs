@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace BanKai.Progress.LinqRelated
@@ -22,7 +23,13 @@ namespace BanKai.Progress.LinqRelated
             IEnumerable<char> collectionA,
             IEnumerable<char[]> collectionB)
         {
-            throw new System.NotImplementedException();
+            IEnumerable<char> result = new char[] { };
+            foreach (char[] oneDArray in collectionB)
+            {
+                result = result.Concat(collectionA.Intersect(oneDArray));
+            }
+
+            return result.ToArray();
         }
     }
 }
