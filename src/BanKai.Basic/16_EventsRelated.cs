@@ -12,17 +12,19 @@ namespace BanKai.Basic
             var demoObject = new BasicEventDemoClass();
             var eventIsCalled = false;
 
+            // event args is empty, use System.EventArgs as parameter
             EventHandler eventHandler = (sender, eventArgs) =>
             {
                 eventIsCalled = true;
             };
 
+            // Add eventHandler to the event queue, -= remove event from event queue
             demoObject.Event += eventHandler;
 
             demoObject.TriggerEvent();
 
             // change the variable value to fix the test.
-            const bool expectedIsEventCalled = false;
+            const bool expectedIsEventCalled = true;
 
             Assert.Equal(expectedIsEventCalled, eventIsCalled);
         }
@@ -38,13 +40,14 @@ namespace BanKai.Basic
                 eventIsCalled = true;
             };
 
+            // Add first then remove from the even queue
             demoObject.Event += eventHandler;
             demoObject.Event -= eventHandler;
 
             demoObject.TriggerEvent();
 
             // change the variable value to fix the test.
-            const bool expectedIsEventCalled = true;
+            const bool expectedIsEventCalled = false;
 
             Assert.Equal(expectedIsEventCalled, eventIsCalled);
         }
@@ -65,7 +68,7 @@ namespace BanKai.Basic
             demoObject.Greet("World");
 
             // change the variable value to fix the test.
-            const string expectedContent = "";
+            const string expectedContent = "Hello World";
 
             Assert.Equal(expectedContent, greetingContent);
         }
@@ -76,7 +79,7 @@ namespace BanKai.Basic
             var demoObject = new CustomizeEventAccessorDemoClass();
 
             // change the variable value to fix the test.
-            var expectedExceptionType = typeof(Exception);
+            var expectedExceptionType = typeof(ArgumentNullException);
 
             Assert.Throws(expectedExceptionType, () => demoObject.Event += null);
         }

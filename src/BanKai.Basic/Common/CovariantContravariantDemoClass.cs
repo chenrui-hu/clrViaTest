@@ -4,7 +4,7 @@
     {
         T Get();
     }
-
+   
     internal interface IContravariantSetDemo<in T>
     {
         void Put(T value);
