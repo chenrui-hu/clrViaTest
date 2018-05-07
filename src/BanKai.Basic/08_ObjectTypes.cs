@@ -127,7 +127,6 @@ namespace BanKai.Basic
             int intObject = 1;
             // upcasting
             var boxed = (object) intObject;
-            // var test = (long) boxed; fail, beacuse currently the type of boxed is sealed
 
             // change the variable values for the following 3 lines to fix the test.
             Type expectedType = typeof(int);
@@ -171,7 +170,7 @@ namespace BanKai.Basic
         public void should_get_most_derived_type_when_call_get_type_method()
         {
             var derivedClassObject = new InheritMemberAccessDemoClass();
-            // doesn't really change the type of object
+            // cast into base type
             var castedToBaseClass = (InheritMemberAccessDemoBaseClass)derivedClassObject;
 
             Type type = castedToBaseClass.GetType();

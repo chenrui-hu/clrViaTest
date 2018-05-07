@@ -19,6 +19,7 @@ namespace BanKai.Basic
             return x * 2;
         }
 
+        // plug-in method with delegate
         private static int PassingDelegateAsArgument(TransformerDelegateDemo transformer)
         {
             return transformer(2) + 1;
@@ -41,6 +42,7 @@ namespace BanKai.Basic
         {
             TransformerDelegateDemo transformer = EquivalentTransformation;
 
+            // int transformResult = new EquivalentTransformation(2);
             int transformResult = transformer(2);
 
             // change variable value to fix test.
@@ -54,6 +56,7 @@ namespace BanKai.Basic
         {
             TransformerDelegateDemo transformer = DoubleTransformation;
 
+            // plug-in method with delegate
             int actualResult = PassingDelegateAsArgument(transformer);
 
             // change variable value to fix test.
@@ -73,7 +76,8 @@ namespace BanKai.Basic
             theDelegate();
 
             // change variable value to fix test.
-            var expectedTrace = new string[] {};
+            var expectedTrace = new string[] {"MulticastDelegateDemoClass.OneMethod() called"
+                , "MulticastDelegateDemoClass.AnotherMethod() called"};
 
             Assert.Equal(expectedTrace, demoObject.Trace);
         }
