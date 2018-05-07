@@ -123,6 +123,7 @@ namespace BanKai.Basic
         {
             var covariantDemoObject = new CovariantContravariantDemoClass<string>("Hello");
             ICovariantGetDemo<object> covariantWithBaseTypeArgument = covariantDemoObject;
+            // support covariance
             object value = covariantWithBaseTypeArgument.Get();
 
             // correct the variable value to fix the test
@@ -137,6 +138,7 @@ namespace BanKai.Basic
             var contravariantDemoObject = new CovariantContravariantDemoClass<object>(null);
             IContravariantSetDemo<string> contravariantWithDerivedTypeArgument =
                 contravariantDemoObject;
+            // support contravariance
             contravariantWithDerivedTypeArgument.Put("Hello");
 
             // correct the variable value to fix the test

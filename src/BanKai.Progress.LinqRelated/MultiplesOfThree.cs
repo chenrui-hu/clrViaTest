@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace BanKai.Progress.LinqRelated
@@ -16,7 +17,7 @@ namespace BanKai.Progress.LinqRelated
 
         static IEnumerable<int> ChooseMultipleOfThree(IEnumerable<int> collection)
         {
-            throw new System.NotImplementedException();
+            return collection.Where(item => item % 3 == 0).ToArray();
         }
     }
 }

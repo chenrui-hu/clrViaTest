@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace BanKai.Progress.LinqRelated
@@ -16,7 +17,7 @@ namespace BanKai.Progress.LinqRelated
 
         static IEnumerable<int> MapEven(IEnumerable<int> collection)
         {
-            throw new System.NotImplementedException();
+            return collection.Select(item => item * 2).ToArray();
         }
     }
 }
