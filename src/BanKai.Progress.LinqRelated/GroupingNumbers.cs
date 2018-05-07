@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace BanKai.Progress.LinqRelated
@@ -16,7 +17,15 @@ namespace BanKai.Progress.LinqRelated
 
         static IEnumerable<int> GroupingNumbersAndSort(IEnumerable<int> collection)
         {
-            throw new System.NotImplementedException();
+            IEnumerable<int> keys = new int[]{};
+            List<int> result = new List<int>();
+            keys = collection.GroupBy(item => item).Select(item => item.Key);
+            foreach (var key in keys)
+            {
+                result.Add(collection.Count(item => item == key));
+            }
+            return result.ToArray();
+
         }
     }
 }
